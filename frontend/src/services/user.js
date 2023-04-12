@@ -1,4 +1,4 @@
-var jwtDecode = require('jwt-decode');
+import jwt_decode from 'jwt-decode';
 import Vue from 'vue';
 import User from '@/services/user';
 
@@ -20,7 +20,7 @@ export default {
             Vue.prototype.$axios.post(`users/token`, params)
             .then((response) => {
                 var token = response.data.datas.token;
-                this.user = jwtDecode(token);
+                this.user = jwt_decode(token);
                 resolve();
             })
             .catch((error) => {
@@ -34,7 +34,7 @@ export default {
             Vue.prototype.$axios.get('users/refreshtoken')
             .then((response) => {
                 var token = response.data.datas.token;
-                this.user = jwtDecode(token);
+                this.user = jwt_decode(token);
                 resolve()
             })
             .catch(err => {
@@ -63,7 +63,7 @@ export default {
             Vue.prototype.$axios.post(`users/init`, params)
             .then((response) => {
                 var token = response.data.datas.token;
-                this.user = jwtDecode(token);
+                this.user = jwt_decode(token);
                 resolve();
             })
             .catch((error) => {
